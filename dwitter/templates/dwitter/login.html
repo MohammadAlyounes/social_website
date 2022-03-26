@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="block">
+     <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button is-success is-fullwidth is-medium mt-4"
+                type="submit">Login
+        </button>
+    </form>
+<a href="{% url 'dwitter:register' %}">Register</a>
+</div>
+{% else %}
+    <section class="hero is-small is-success mb-4">
+            <p class="subtitle is-2">
+                You are already logged in! Refer to your home page by clicking on above header
+            </p>
+    </section>
+{% endif %}
+
+{% endblock content %}
